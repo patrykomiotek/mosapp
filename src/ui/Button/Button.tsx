@@ -5,6 +5,8 @@
 // 'midnight-blue': '#2c3e50'
 // clouds: '#ecf0f1'
 
+import { MouseEventHandler, ComponentProps } from "react";
+
 const colors = {
   carrot: "#e67e22",
   emerald: "#2ecc71",
@@ -21,19 +23,35 @@ const colors = {
 
 type Colors = keyof typeof colors;
 
-type Props = {
+type Props = Readonly<{
   label: string;
   color?: Colors;
   bgColor?: Colors;
-};
+  // onClick?: () => void;
+  // onClick?: MouseEventHandler<HTMLButtonElement>;
+}>;
+
+// Readonly
+// Partial
+// Required
+// type RequiredProps = Required<Props>
+
+// Pick<>
+// Omit<>
 
 export const Button = ({
   label,
+  onClick,
   color = "carrot",
   bgColor = "emerald",
-}: Props) => {
+  ...rest
+}: Pick<ComponentProps<"button">, "type" | "value" | "onClick"> & Props) => {
   return (
-    <button style={{ color: colors[color], backgroundColor: colors[bgColor] }}>
+    <button
+      style={{ color: colors[color], backgroundColor: colors[bgColor] }}
+      onClick={onClick}
+      {...rest}
+    >
       {label}
     </button>
   );
