@@ -13,29 +13,18 @@ import {
 import { Generator } from "./components/Generator";
 import { LoginFormWithState } from "./components/LoginFormWithState";
 import { AuthInfo } from "./components/Auth/AuthInfo";
-
-interface Context {
-  isLogged: boolean;
-  setIsLogged: Dispatch<SetStateAction<boolean>>;
-}
-
-export const AuthContext = createContext<Context>({
-  isLogged: false,
-  setIsLogged: () => null,
-});
+import { AuthContextProvider } from "./components/Auth/AuthContext";
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false);
-
   const handleClick: MouseEventHandler<HTMLButtonElement> = () => {
     alert("Hello!");
   };
 
   return (
     <div className="App">
-      <AuthContext.Provider value={{ isLogged, setIsLogged }}>
+      <AuthContextProvider>
         <AuthInfo />
-      </AuthContext.Provider>
+      </AuthContextProvider>
 
       {/* <AuthInfo /> */}
 

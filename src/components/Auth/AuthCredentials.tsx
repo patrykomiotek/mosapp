@@ -1,9 +1,8 @@
-import { useContext } from "react";
 import { Text } from "../../ui";
-import { AuthContext } from "../../App";
+import { useAuthContext } from "../Auth/AuthContext";
 
 export const AuthCredentials = () => {
-  const context = useContext(AuthContext);
+  const context = useAuthContext();
 
   return (
     <div>

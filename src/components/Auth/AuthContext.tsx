@@ -1,19 +1,48 @@
-import { createContext, useContext } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  createContext,
+  useContext,
+  useState,
+} from "react";
 
-const initialValue = {
-  count: 0,
-};
+// 1. Create context
+// 2. create and export provider
+// 3. create custom hook which will check if context is set
 
-const AuthContext = createContext(initialValue);
-
-const Counter = () => {
-  const context = useContext(AuthContext);
-  context.count;
-};
-
-{
-  /* <AuthContext.Provider>
-
-
-</AuthContext.Provider> */
+interface AuthContextType {
+  isLogged: boolean;
+  setIsLogged: Dispatch<SetStateAction<boolean>>;
 }
+
+const initialValue: AuthContextType = {
+  isLogged: false,
+  setIsLogged: () => null,
+};
+
+const AuthContext = createContext<AuthContextType | null>(null);
+
+// useAuthContext
+export const useAuthContext = () => {
+  const context = useContext(AuthContext);
+  if (context) {
+    return context;
+  }
+  throw new Error(
+    "Oh no! Component should be placed inside AuthContextProvider"
+  );
+};
+
+export const AuthContextProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const [isLogged, setIsLogged] = useState(false);
+
+  return (
+    <AuthContext.Provider value={{ isLogged, setIsLogged }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
