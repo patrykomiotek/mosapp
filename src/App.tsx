@@ -18,6 +18,7 @@ import { AuthContextProvider } from "./components/Auth/AuthContext";
 import { ThemeSwitcher } from "./components/Theme/ThemeSwitcher";
 import { ThemeProvider } from "./components/Theme/ThemeContext";
 import { MagicButton } from "./ui/MagicButton";
+import { ViewPort } from "./components/ViewPort";
 
 function App() {
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -38,6 +39,7 @@ function App() {
       <ThemeProvider>
         <ThemeSwitcher />
         <AuthContextProvider>
+          <ViewPort />
           <AuthInfo />
           <MagicButton ref={buttonRef} onMouseEnter={handleMouseEnter} />
         </AuthContextProvider>
