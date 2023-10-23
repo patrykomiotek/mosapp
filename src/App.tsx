@@ -14,6 +14,8 @@ import { Generator } from "./components/Generator";
 import { LoginFormWithState } from "./components/LoginFormWithState";
 import { AuthInfo } from "./components/Auth/AuthInfo";
 import { AuthContextProvider } from "./components/Auth/AuthContext";
+import { ThemeSwitcher } from "./components/Theme/ThemeSwitcher";
+import { ThemeProvider } from "./components/Theme/ThemeContext";
 
 function App() {
   const handleClick: MouseEventHandler<HTMLButtonElement> = () => {
@@ -22,9 +24,12 @@ function App() {
 
   return (
     <div className="App">
-      <AuthContextProvider>
-        <AuthInfo />
-      </AuthContextProvider>
+      <ThemeProvider>
+        <ThemeSwitcher />
+        <AuthContextProvider>
+          <AuthInfo />
+        </AuthContextProvider>
+      </ThemeProvider>
 
       {/* <AuthInfo /> */}
 
