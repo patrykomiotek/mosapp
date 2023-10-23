@@ -1,4 +1,5 @@
 import { ChangeEventHandler, FormEventHandler, useRef, useState } from "react";
+import { Input } from "../../ui/Input/Input";
 
 interface FormState {
   email: string;
@@ -34,23 +35,9 @@ export const LoginFormWithRefs = () => {
   return (
     <form onSubmit={handleSubmit}>
       <p>E-mail: {emailFieldRef.current?.value}</p>
-      <div>
-        <label htmlFor="email">E-mail</label>
-        <input
-          id="email"
-          type="email"
-          ref={emailFieldRef}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input id="password" ref={passwordFieldRef} type="password" />
-      </div>
-      <div>
-        <label htmlFor="language">Language</label>
-        <input id="language" ref={languageFieldRef} type="text" />
-      </div>
+      <Input ref={emailFieldRef} label="E-mail" type="email" />
+      <Input ref={passwordFieldRef} label="Password" type="password" />
+      <Input ref={languageFieldRef} label="Language" />
       <button type="submit">Send</button>
     </form>
   );
