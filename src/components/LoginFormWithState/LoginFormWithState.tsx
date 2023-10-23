@@ -1,4 +1,10 @@
-import { ChangeEventHandler, FormEventHandler, useState } from "react";
+import {
+  ChangeEventHandler,
+  FormEventHandler,
+  useState,
+  useEffect,
+  useRef,
+} from "react";
 
 interface FormState {
   email: string;
@@ -7,11 +13,23 @@ interface FormState {
 }
 
 export const LoginFormWithState = () => {
+  const emailFieldRef = useRef<HTMLInputElement>(null);
   const [formState, setFormState] = useState<FormState>({
     email: "",
     password: "",
     language: "",
   });
+
+  useEffect(() => {
+    // mount & update
+    console.log("mount and/or update");
+    emailFieldRef.current?.focus();
+
+    return () => {
+      // unmount
+      console.log("unmount");
+    };
+  }, []); // [] - only mount
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const id = event.target.id;
@@ -37,6 +55,7 @@ export const LoginFormWithState = () => {
         <label htmlFor="email">E-mail</label>
         <input
           id="email"
+          ref={emailFieldRef}
           type="email"
           onBlur={handleChange}
           value={formState.email}
@@ -60,7 +79,6 @@ export const LoginFormWithState = () => {
           value={formState.language}
         />
       </div>
-      <button type="submit">Send</button>
     </form>
   );
 };

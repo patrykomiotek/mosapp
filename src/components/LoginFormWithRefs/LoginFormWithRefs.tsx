@@ -1,5 +1,11 @@
-import { ChangeEventHandler, FormEventHandler, useRef, useState } from "react";
-import { Input } from "../../ui/Input/Input";
+import {
+  ChangeEventHandler,
+  FormEventHandler,
+  useRef,
+  useState,
+  useEffect,
+} from "react";
+import { Input } from "../../ui/Input";
 
 interface FormState {
   email: string;
@@ -11,6 +17,10 @@ export const LoginFormWithRefs = () => {
   const emailFieldRef = useRef<HTMLInputElement>(null);
   const passwordFieldRef = useRef<HTMLInputElement>(null);
   const languageFieldRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    emailFieldRef.current?.focus();
+  });
 
   const handleSubmit: FormEventHandler = (event) => {
     event.preventDefault();
