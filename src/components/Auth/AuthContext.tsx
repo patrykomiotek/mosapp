@@ -1,24 +1,21 @@
-import {
-  Dispatch,
-  SetStateAction,
-  createContext,
-  useContext,
-  useState,
-} from "react";
+import { createContext, useContext, useState } from "react";
 
 // 1. Create context
 // 2. create and export provider
 // 3. create custom hook which will check if context is set
+// React Context Hook Pattern
 
 interface AuthContextType {
   isLogged: boolean;
-  setIsLogged: Dispatch<SetStateAction<boolean>>;
+  loginUser: Function;
+  logoutUser: Function;
+  toggleUser: Function;
 }
 
-const initialValue: AuthContextType = {
-  isLogged: false,
-  setIsLogged: () => null,
-};
+// const initialValue: AuthContextType = {
+//   isLogged: false,
+//   setIsLogged: () => null,
+// };
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
@@ -33,16 +30,22 @@ export const useAuthContext = () => {
   );
 };
 
+const useAuth = () => {
+  const [isLogged, setIsLogged] = useState(false);
+
+  const loginUser = () => setIsLogged(true);
+  const logoutUser = () => setIsLogged(false);
+  const toggleUser = () => setIsLogged((value) => !value);
+
+  return { isLogged, loginUser, logoutUser, toggleUser };
+};
+
 export const AuthContextProvider = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
-  const [isLogged, setIsLogged] = useState(false);
+  const auth = useAuth();
 
-  return (
-    <AuthContext.Provider value={{ isLogged, setIsLogged }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 };
