@@ -10,8 +10,8 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
-    color: { control: "color" },
-    bgColor: { control: "color" },
+    // color: { control: "color" },
+    // bgColor: { control: "color" },
   },
 } satisfies Meta<typeof Button>;
 

@@ -5,7 +5,8 @@
 // 'midnight-blue': '#2c3e50'
 // clouds: '#ecf0f1'
 
-import { MouseEventHandler, ComponentProps } from "react";
+// import { MouseEventHandler, ComponentProps } from "react";
+import { ComponentProps } from "react";
 
 const colors = {
   carrot: "#e67e22",
