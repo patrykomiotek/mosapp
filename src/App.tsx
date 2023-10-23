@@ -19,6 +19,8 @@ import { ThemeSwitcher } from "./components/Theme/ThemeSwitcher";
 import { ThemeProvider } from "./components/Theme/ThemeContext";
 import { MagicButton } from "./ui/MagicButton";
 import { ViewPort } from "./components/ViewPort";
+import { Counter } from "./components/Counter";
+import { ProductList } from "./features/products/ProductList";
 
 function App() {
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -39,6 +41,8 @@ function App() {
       <ThemeProvider>
         <ThemeSwitcher />
         <AuthContextProvider>
+          <ProductList />
+          <Counter />
           <ViewPort />
           <AuthInfo />
           <MagicButton ref={buttonRef} onMouseEnter={handleMouseEnter} />
