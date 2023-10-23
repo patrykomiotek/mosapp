@@ -8,6 +8,7 @@ import {
   MouseEventHandler,
   SetStateAction,
   createContext,
+  useRef,
   useState,
 } from "react";
 import { Generator } from "./components/Generator";
@@ -16,10 +17,20 @@ import { AuthInfo } from "./components/Auth/AuthInfo";
 import { AuthContextProvider } from "./components/Auth/AuthContext";
 import { ThemeSwitcher } from "./components/Theme/ThemeSwitcher";
 import { ThemeProvider } from "./components/Theme/ThemeContext";
+import { MagicButton } from "./ui/MagicButton";
 
 function App() {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
   const handleClick: MouseEventHandler<HTMLButtonElement> = () => {
     alert("Hello!");
+  };
+
+  const handleMouseEnter: MouseEventHandler<HTMLButtonElement> = () => {
+    if (buttonRef.current) {
+      buttonRef.current.style.backgroundColor = "red";
+      buttonRef.current.style.color = "white";
+    }
   };
 
   return (
@@ -28,6 +39,7 @@ function App() {
         <ThemeSwitcher />
         <AuthContextProvider>
           <AuthInfo />
+          <MagicButton ref={buttonRef} onMouseEnter={handleMouseEnter} />
         </AuthContextProvider>
       </ThemeProvider>
 
