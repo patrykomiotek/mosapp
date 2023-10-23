@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useState } from "react";
+import { ChangeEventHandler, FormEventHandler, useState } from "react";
 
 interface FormState {
   email: string;
@@ -23,8 +23,13 @@ export const LoginFormWithState = () => {
     });
   };
 
+  const handleSubmit: FormEventHandler = (event) => {
+    event.preventDefault();
+    console.log(formState);
+  };
+
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       <p>
         E-mail: {formState.email}, password: {formState.password}
       </p>
@@ -56,6 +61,6 @@ export const LoginFormWithState = () => {
         />
       </div>
       <button type="submit">Send</button>
-    </div>
+    </form>
   );
 };
