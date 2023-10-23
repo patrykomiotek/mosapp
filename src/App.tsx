@@ -3,27 +3,41 @@ import { Text } from "./ui/Text";
 import { Button } from "./ui/Button";
 
 import "./App.css";
-import { MouseEventHandler, createContext } from "react";
+import {
+  Dispatch,
+  MouseEventHandler,
+  SetStateAction,
+  createContext,
+  useState,
+} from "react";
 import { Generator } from "./components/Generator";
 import { LoginFormWithState } from "./components/LoginFormWithState";
 import { AuthInfo } from "./components/Auth/AuthInfo";
 
 interface Context {
   isLogged: boolean;
+  setIsLogged: Dispatch<SetStateAction<boolean>>;
 }
 
-export const AuthContext = createContext<Context>({ isLogged: false });
+export const AuthContext = createContext<Context>({
+  isLogged: false,
+  setIsLogged: () => null,
+});
 
 function App() {
+  const [isLogged, setIsLogged] = useState(false);
+
   const handleClick: MouseEventHandler<HTMLButtonElement> = () => {
     alert("Hello!");
   };
 
   return (
     <div className="App">
-      <AuthContext.Provider value={{ isLogged: true }}>
+      <AuthContext.Provider value={{ isLogged, setIsLogged }}>
         <AuthInfo />
       </AuthContext.Provider>
+
+      {/* <AuthInfo /> */}
 
       {/* <LoginFormWithState /> */}
       {/* <Generator /> */}
