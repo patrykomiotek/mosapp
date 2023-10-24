@@ -21,6 +21,8 @@ import { MagicButton } from "./ui/atoms/MagicButton";
 import { ViewPort } from "./components/ViewPort";
 import { Counter } from "./components/Counter";
 import { ProductList } from "./features/products/ProductList";
+import { BuggyComponent } from "./components/ErrorBoundary";
+import { ErrorBoundary } from "./components/ErrorBoundary/ErrorBoundary";
 
 function App() {
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -38,16 +40,19 @@ function App() {
 
   return (
     <div className="App">
-      <ThemeProvider>
-        <ThemeSwitcher />
-        <AuthContextProvider>
-          <ProductList />
-          <Counter />
-          <ViewPort />
-          <AuthInfo />
-          <MagicButton ref={buttonRef} onMouseEnter={handleMouseEnter} />
-        </AuthContextProvider>
-      </ThemeProvider>
+      <ErrorBoundary fallback={<p>Error!</p>}>
+        <ThemeProvider>
+          <ThemeSwitcher />
+          <AuthContextProvider>
+            <ProductList />
+            <Counter />
+            <ViewPort />
+            <BuggyComponent />
+            <AuthInfo />
+            <MagicButton ref={buttonRef} onMouseEnter={handleMouseEnter} />
+          </AuthContextProvider>
+        </ThemeProvider>
+      </ErrorBoundary>
 
       {/* <AuthInfo /> */}
 
