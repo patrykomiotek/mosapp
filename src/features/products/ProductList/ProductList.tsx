@@ -1,6 +1,7 @@
 // import { useEffect, useState } from "react";
 import { fetchProducts } from "../../../services/products";
 import { useApi } from "../../../hooks/useApi";
+import { Link } from "react-router-dom";
 
 interface ProductDto {
   id: string;
@@ -58,7 +59,9 @@ export const ProductList = () => {
   return (
     <div>
       {data.map((elem) => (
-        <div key={elem.id}>{elem.fields.name}</div>
+        <div key={elem.id}>
+          <Link to={`/products/${elem.id}`}>{elem.fields.name}</Link>
+        </div>
       ))}
     </div>
   );

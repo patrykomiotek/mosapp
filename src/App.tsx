@@ -30,6 +30,7 @@ import { BuggyComponent } from "./components/ErrorBoundary";
 import { ErrorBoundary } from "./components/ErrorBoundary/ErrorBoundary";
 import { Layout } from "./components/Layout";
 import { ProductListPage } from "./pages/ProductListPage";
+import { ProductDetailsPage } from "./pages/ProductDetailsPages";
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   if (1 === 1) {
@@ -44,10 +45,10 @@ const routes = createBrowserRouter([
     path: "/",
     element: <Layout />,
     children: [
-      // {
-      //   path: '/products/:id',
-      //   element:
-      // },
+      {
+        path: "/products/:id",
+        element: <ProductDetailsPage />,
+      },
       {
         // path: 'about',
         // element: <AboutPage />
