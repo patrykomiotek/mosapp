@@ -19,6 +19,7 @@ export const LoginFormWithState = () => {
     password: "",
     language: "",
   });
+  const [emailError, setEmailError] = useState(true);
 
   useEffect(() => {
     // mount & update
@@ -44,6 +45,11 @@ export const LoginFormWithState = () => {
   const handleSubmit: FormEventHandler = (event) => {
     event.preventDefault();
     console.log(formState);
+    if (!formState.email.includes("@")) {
+      setEmailError(true);
+    } else {
+      setEmailError(false);
+    }
   };
 
   return (
@@ -51,13 +57,15 @@ export const LoginFormWithState = () => {
       <p>
         E-mail: {formState.email}, password: {formState.password}
       </p>
+      <p>E-mail {emailError ? "is invalid" : "is valid"}</p>
       <div>
         <label htmlFor="email">E-mail</label>
         <input
           id="email"
           ref={emailFieldRef}
-          type="email"
-          onBlur={handleChange}
+          // type="email"
+          type="text"
+          onChange={handleChange}
           value={formState.email}
         />
       </div>
@@ -79,6 +87,7 @@ export const LoginFormWithState = () => {
           value={formState.language}
         />
       </div>
+      <button type="submit">Submit</button>
     </form>
   );
 };
