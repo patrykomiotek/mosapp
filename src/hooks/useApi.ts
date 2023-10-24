@@ -7,6 +7,13 @@ import { api } from "../services/products";
 //   isError: boolean;
 // };
 
+type Rejected = {
+  // rejected
+  data: undefined;
+  isLoading: false;
+  isError: true;
+};
+
 type State<T> =
   | {
       // pending
@@ -20,12 +27,7 @@ type State<T> =
       isLoading: false;
       isError: false;
     }
-  | {
-      // rejected
-      data: undefined;
-      isLoading: false;
-      isError: true;
-    };
+  | Rejected;
 
 export const useApi = <T>(source: string | Function) => {
   const [state, setState] = useState<State<T>>({
