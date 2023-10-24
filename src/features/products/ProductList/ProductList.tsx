@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { fetchProducts } from "../../../services/products";
-import { useApi } from "src/hooks/useApi";
+import { useApi } from "../../../hooks/useApi";
 
 interface ProductDto {
   id: string;

@@ -1,11 +1,31 @@
 import { useEffect, useState } from "react";
 import { api } from "../services/products";
 
-type State<T> = {
-  data: T | undefined;
-  isLoading: boolean;
-  isError: boolean;
-};
+// type State<T> = {
+//   data: T | undefined;
+//   isLoading: boolean;
+//   isError: boolean;
+// };
+
+type State<T> =
+  | {
+      // pending
+      data: undefined;
+      isLoading: true;
+      isError: false;
+    }
+  | {
+      // fulfilled
+      data: T;
+      isLoading: false;
+      isError: false;
+    }
+  | {
+      // rejected
+      data: undefined;
+      isLoading: false;
+      isError: true;
+    };
 
 export const useApi = <T>(source: string | Function) => {
   const [state, setState] = useState<State<T>>({
