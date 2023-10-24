@@ -3,7 +3,7 @@ import { Text } from "./ui/atoms/Text";
 import { Button } from "./ui/atoms/Button";
 
 import "./App.css";
-import {
+import React, {
   Dispatch,
   MouseEventHandler,
   SetStateAction,
@@ -11,6 +11,11 @@ import {
   useRef,
   useState,
 } from "react";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 import { Generator } from "./components/Generator";
 import { LoginFormWithState } from "./components/LoginFormWithState";
 import { AuthInfo } from "./components/Auth/AuthInfo";
@@ -23,6 +28,39 @@ import { Counter } from "./components/Counter";
 import { ProductList } from "./features/products/ProductList";
 import { BuggyComponent } from "./components/ErrorBoundary";
 import { ErrorBoundary } from "./components/ErrorBoundary/ErrorBoundary";
+import { Layout } from "./components/Layout";
+import { ProductListPage } from "./pages/ProductListPage";
+
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+  if (1 === 1) {
+    return children;
+  } else {
+    return <Navigate to="/login" />;
+  }
+};
+
+const routes = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      // {
+      //   path: '/products/:id',
+      //   element:
+      // },
+      {
+        // path: 'about',
+        // element: <AboutPage />
+        path: "/products",
+        element: (
+          // <ProtectedRoute>
+          <ProductListPage />
+          // </ProtectedRoute>
+        ),
+      },
+    ],
+  },
+]);
 
 function App() {
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -42,14 +80,16 @@ function App() {
     <div className="App">
       <ErrorBoundary fallback={<p>Error!</p>}>
         <ThemeProvider>
-          <ThemeSwitcher />
           <AuthContextProvider>
-            <ProductList />
+            <RouterProvider router={routes} />
+
+            {/* <ProductList />
+            <ThemeSwitcher />
             <Counter />
             <ViewPort />
             {/* <BuggyComponent /> */}
-            <AuthInfo />
-            <MagicButton ref={buttonRef} onMouseEnter={handleMouseEnter} />
+            {/* <AuthInfo /> */}
+            {/* <MagicButton ref={buttonRef} onMouseEnter={handleMouseEnter} /> */}
           </AuthContextProvider>
         </ThemeProvider>
       </ErrorBoundary>
