@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { fetchProducts } from "../../../services/products";
 
 interface ProductDto {
   id: string;
@@ -9,22 +10,18 @@ interface ProductDto {
 
 export const ProductList = () => {
   const [products, setProducts] = useState<ProductDto[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   const loadData = async () => {
-    // try ... catch ...
-    const response = await fetch(
-      "https://api.airtable.com/v0/appuBOY54XBVjs1x9/products",
-      {
-        headers: {
-          Authorization: `Bearer patIp7lzrBkvpFrAE.57b62f836b4c41170c8a5273e1bf5c2fd7f627a9346918186d76248b62a386e5`,
-        },
-      }
-    );
+    try {
+      const response = await fetchProducts();
 
-    if (response.ok) {
-      const data = await response.json();
-
-      setProducts(data.records);
+      setProducts(response.data.records);
+    } catch {
+      setIsError(true);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -45,6 +42,14 @@ export const ProductList = () => {
   //     })
   //     .then((data) => setProducts(data.records));
   // }, []);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (isError) {
+    return <p>Error!</p>;
+  }
 
   return (
     <div>
