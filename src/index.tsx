@@ -3,10 +3,19 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { worker } from "./mocks/browser";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
+// Start the mocking conditionally.
+// if (process.env.NODE_ENV === "development") {
+//   // const { worker } = require("./mocks/browser");
+//   // eslint-disable-next-line @typescript-eslint/no-floating-promises
+//   worker.start();
+// }
+
 root.render(
   <React.StrictMode>
     <App />

@@ -47,7 +47,7 @@ function App() {
             <ProductList />
             <Counter />
             <ViewPort />
-            <BuggyComponent />
+            {/* <BuggyComponent /> */}
             <AuthInfo />
             <MagicButton ref={buttonRef} onMouseEnter={handleMouseEnter} />
           </AuthContextProvider>
