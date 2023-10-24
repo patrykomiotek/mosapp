@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import z from "zod";
 
 const api = axios.create({
@@ -54,4 +54,8 @@ export const fetchProducts = async () => {
   return validResponse.records;
 
   // return api.get<ListResponse<ProductDto>>("/products");
+};
+
+export const fetchProduct = (id: ProductDto["id"]) => {
+  return api.get<ProductDto>(`/products/${id}`);
 };
