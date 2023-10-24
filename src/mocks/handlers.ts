@@ -59,6 +59,14 @@ export const handlers = [
     );
   }),
 
+  rest.get(`${API_URL}/products/123`, (_req, res, ctx) => {
+    return res(
+      // ctx.delay(2000),
+      ctx.status(200),
+      ctx.json(productsMockData.records[0])
+    );
+  }),
+
   // rest.post("/login", (req, res, ctx) => {
   //   // const { username } = req.body
 

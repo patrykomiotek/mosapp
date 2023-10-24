@@ -14,7 +14,6 @@ export const ProductDetails = ({ id }: { id: string }) => {
   const { data, isLoading, isError } = useApi<AxiosResponse<ProductDto>>(() =>
     fetchProduct(id)
   );
-
   const product = data?.data;
 
   if (isLoading) {
