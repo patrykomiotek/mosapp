@@ -4,8 +4,10 @@
 // learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom";
 import { cleanup } from "@testing-library/react";
-
+import { toHaveNoViolations } from "jest-axe";
 import { server } from "./mocks/server";
+
+expect.extend(toHaveNoViolations);
 
 beforeAll(() => {
   // Enable the mocking in tests.
