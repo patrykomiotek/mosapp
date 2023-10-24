@@ -47,6 +47,7 @@ export const employeesMockData = {
 export const handlers = [
   rest.get(`${API_URL}/products`, (_req, res, ctx) => {
     return res(
+      ctx.delay(4000),
       ctx.status(200),
       ctx.json(productsMockData)
 
