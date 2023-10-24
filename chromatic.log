@@ -1,0 +1,13 @@
+
+Chromatic CLI v7.5.0
+https://www.chromatic.com/docs/cli
+
+ℹ Speed up Continuous Integration
+Your project is linked to GitHub so Chromatic will report results there.
+This means you can pass the --exit-once-uploaded flag to skip waiting for build results.
+Read more here: https://www.chromatic.com/docs/cli#chromatic-options
+✖ Found 1 visual change: Review the changes at https://www.chromatic.com/build?appId=65378d93678e7e0ba3d3b7fc&number=2
+
+ℹ For CI/CD use cases, this command failed with exit code 1
+Pass --exit-zero-on-changes to succeed this command regardless of changes.
+Pass --auto-accept-changes to succeed and automatically accept any changes.

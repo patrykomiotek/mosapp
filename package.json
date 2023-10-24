@@ -10,7 +10,8 @@
     "eject": "craco eject",
     "lint": "eslint ./src/",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_5d39f632b51a247"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -65,6 +66,7 @@
     "@types/react-datepicker": "^4.11.2",
     "@types/uuid": "^9.0.6",
     "babel-plugin-named-exports-order": "^0.0.2",
+    "chromatic": "^7.5.0",
     "concurrently": "^8.2.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-storybook": "^0.6.15",
@@ -93,5 +95,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "mosapp@0.1.0"
 }
