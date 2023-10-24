@@ -4,7 +4,7 @@
 
 type Props = {
   // children: React.ReactNode
-  children: string; // React specific
+  children: string | string[] | null; // React specific
 };
 
 // export const Text = (props: Props) => {

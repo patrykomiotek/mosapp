@@ -1,11 +1,13 @@
-import { useTheme } from "./ThemeContext";
+import { Text, Button } from "../../ui";
+import { useThemeContext } from "./ThemeContext";
 
 export const ThemeSwitcher = () => {
-  const context = useTheme();
+  const context = useThemeContext();
 
   return (
     <div>
-      <button onClick={() => context.toggle()}>Toggle</button>
+      <Text>Theme: {context.theme || "null"}</Text>
+      <Button label="Toggle" onClick={() => context.toggle()} />
     </div>
   );
 };
