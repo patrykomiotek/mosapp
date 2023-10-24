@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start-default": "rimraf ./build && concurrently --kill-others \"less-watch-compiler --config less-watcher.config.json\" \"react-scripts start\"",
-    "start": "react-scripts start",
+    "start": "craco start",
     "build": "craco build",
     "test": "cross-env CI=true craco test --env=jsdom",
     "eject": "craco eject",

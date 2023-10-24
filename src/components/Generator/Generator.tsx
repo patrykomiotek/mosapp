@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { Button } from "../../ui/Button";
-import { Text } from "../../ui/Text";
+import { Button } from "../../ui/atoms/Button";
+import { Text } from "../../ui/atoms/Text";
 import { MouseEventHandler } from "react";
 
 // npm i --save-dev @types/uuid

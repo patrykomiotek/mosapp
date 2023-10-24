@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/react-webpack5";
+const aliases = require("../aliases");
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
@@ -18,5 +19,15 @@ const config: StorybookConfig = {
     autodocs: "tag",
   },
   staticDirs: ["../public"],
+  // webpackFinal: (config) => {
+  //   if (config) {
+  //     config?.resolve?.alias = {
+  //       ...config.resolve.alias,
+  //       ...aliases,
+  //     };
+  //     return config;
+  //   }
+  //   return config;
+  // },
 };
 export default config;

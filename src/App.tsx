@@ -1,6 +1,6 @@
 // import React from 'react';
-import { Text } from "./ui/Text";
-import { Button } from "./ui/Button";
+import { Text } from "./ui/atoms/Text";
+import { Button } from "./ui/atoms/Button";
 
 import "./App.css";
 import {
@@ -17,7 +17,7 @@ import { AuthInfo } from "./components/Auth/AuthInfo";
 import { AuthContextProvider } from "./components/Auth/AuthContext";
 import { ThemeSwitcher } from "./components/Theme/ThemeSwitcher";
 import { ThemeProvider } from "./components/Theme/ThemeContext";
-import { MagicButton } from "./ui/MagicButton";
+import { MagicButton } from "./ui/atoms/MagicButton";
 import { ViewPort } from "./components/ViewPort";
 import { Counter } from "./components/Counter";
 import { ProductList } from "./features/products/ProductList";

@@ -1,4 +1,4 @@
-export { Button } from "./Button";
-export { Input } from "./Input";
-export { MagicButton } from "./MagicButton";
-export { Text } from "./Text";
+export { Button } from "./atoms/Button";
+export { Input } from "./molecules/Input";
+export { MagicButton } from "./atoms/MagicButton";
+export { Text } from "./atoms/Text";

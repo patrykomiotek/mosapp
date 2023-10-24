@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@hooks/*": ["hooks/*"],
+      "@pages/*": ["pages/*"],
+      "@services/*": ["services/*"],
+      "@stories/*": ["stories/*"],
+      "@apptypes/*": ["types/*"],
+      "@utils/*": ["utils/*"],
+      "@ui/*": ["ui/*"],
+      "@ui/atoms/*": ["ui/atoms/*"],
+      "@atoms/*": ["ui/atoms/*"],
+      "@molecules/*": ["ui/molecules/*"],
+      "@organisms/*": ["ui/organisms/*"],
+    }
+  }
+}
