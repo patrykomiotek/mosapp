@@ -1,4 +1,5 @@
 import axios from "axios";
+import z from "zod";
 
 const api = axios.create({
   baseURL: "https://api.airtable.com/v0/appuBOY54XBVjs1x9",
@@ -14,10 +15,43 @@ interface ProductDto {
   };
 }
 
-interface ListResponse<T> {
-  records: T[];
-}
+// interface ListResponse<T> {
+//   records: T[];
+// }
 
-export const fetchProducts = () => {
-  return api.get<ListResponse<ProductDto>>("/products");
+const productsSchema = z.object({
+  records: z.array(
+    z.object({
+      id: z.string(),
+      fields: z.object({
+        name: z.string(),
+        description: z.string(),
+        price: z.number(),
+      }),
+    })
+  ),
+});
+
+type ProductsResponse = z.infer<typeof productsSchema>;
+
+export const fetchProducts = async () => {
+  const response = await api.get<ProductsResponse>("/products");
+  const schema = z.object({
+    records: z.array(
+      z.object({
+        id: z.string(),
+        fields: z.object({
+          name: z.string(),
+          // description: z.string(),
+          // price: z.string(),
+        }),
+      })
+    ),
+  });
+
+  const validResponse = schema.parse(response.data);
+
+  return validResponse.records;
+
+  // return api.get<ListResponse<ProductDto>>("/products");
 };

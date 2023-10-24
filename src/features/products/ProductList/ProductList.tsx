@@ -17,9 +17,10 @@ export const ProductList = () => {
     try {
       const response = await fetchProducts();
 
-      setProducts(response.data.records);
-    } catch {
+      setProducts(response);
+    } catch (error) {
       setIsError(true);
+      console.log({ error });
     } finally {
       setIsLoading(false);
     }
